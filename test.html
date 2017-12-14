@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        // index.js(名前不問)にservice-workerまわりの処理を書く
+        navigator.serviceWorker.register('/test.js').then(function(registration) {
+          // 登録成功
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+          // 登録失敗 :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      }
+    </script>
+</head>
+<body>
+<h1>test</h1>
+<p>ServiceWorkerのテストです</p>
+<ol>
+    <li>初回アクセス時に歯車がついています、これはキャッシュのインストールです</li>
+    <li>2回目以降のアクセス時、networkのsize列をみると(from ServiceWorker)となっているかと思います。これでcacheが効いていることを表しています</li>
+    <li>キャッシュ状況を見る方法はApplicationタブのServiceWorkerという項目で見ることが出来ます</li>
+    <li>キャッシュを消す時はApplicationタブのCacheStorageを右クリック削除でできます</li>
+</ol>
+
+<script src="js/app.js"></script>
+</body>
+</html>
